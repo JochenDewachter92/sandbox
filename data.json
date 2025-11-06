@@ -1,0 +1,85 @@
+{
+  "document_types": [
+    {
+      "name": "EPC-attest",
+      "description": "Energieprestatiecertificaat met informatie over de energiezuinigheid van een gebouw",
+      "parameters": [
+        {
+          "name": "epc_nummer",
+          "description": "Uniek certificaatnummer van het EPC"
+        },
+        {
+          "name": "adres",
+          "description": "Adres van het gebouw of de eenheid"
+        },
+        {
+          "name": "bouwjaar",
+          "description": "Bouwjaar van het gebouw"
+        },
+        {
+          "name": "label",
+          "description": "Energieprestatie-label (bijv. A, B, C, D, E, F)"
+        },
+        {
+          "name": "referentiewaarde",
+          "description": "Energiescore of referentiewaarde (kWh/m²)"
+        },
+        {
+          "name": "bruto_vloeroppervlakte",
+          "description": "Bruto vloeroppervlakte in vierkante meter"
+        },
+        {
+          "name": "geldigheidsdatum",
+          "description": "Datum tot wanneer het attest geldig is"
+        },
+        {
+          "name": "opsteller",
+          "description": "Naam van de erkende energiedeskundige"
+        }
+      ]
+    },
+    {
+      "name": "Kadastraal uittreksel",
+      "description": "Officieel uittreksel met kadastrale gegevens van een perceel",
+      "parameters": [
+        {
+          "name": "perceelnummer",
+          "description": "Officieel kadastraal perceelnummer"
+        },
+        {
+          "name": "afdeling",
+          "description": "Kadastrale afdeling"
+        },
+        {
+          "name": "sectie",
+          "description": "Kadastrale sectie"
+        },
+        {
+          "name": "gemeente",
+          "description": "Gemeente waarin het perceel gelegen is"
+        },
+        {
+          "name": "oppervlakte",
+          "description": "Oppervlakte van het perceel in vierkante meter"
+        },
+        {
+          "name": "eigenaar",
+          "description": "Naam of namen van de eigenaar/eigenaars"
+        },
+        {
+          "name": "rechten_en_lasten",
+          "description": "Vermelde rechten en lasten op het perceel"
+        },
+        {
+          "name": "referentie_dossier",
+          "description": "Referentie of dossiernummer van het uittreksel"
+        },
+        {
+          "name": "datum_afgifte",
+          "description": "Datum van afgifte van het uittreksel"
+        }
+      ]
+    }
+  ]
+}
+

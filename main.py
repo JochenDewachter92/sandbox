@@ -1,37 +1,35 @@
 import os
-from openai import AzureOpenAI
+from typing import List
+from pathlib import Path
 from dotenv import load_dotenv
+from classifier import TextClassifier
+from models import DocumentType
+from document_types_loader import load_document_types_from_json
 
 load_dotenv()
+
+DATA_PATH = Path(__file__).with_name("data.json")
+DOCUMENT_TYPES: List[DocumentType] = load_document_types_from_json(DATA_PATH)
+
 subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
 model_name = os.getenv("AZURE_OPENAI_MODEL_NAME")
+endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 
-if not subscription_key:
-    raise RuntimeError(
-        "AZURE_OPENAI_API_KEY is not set. Add it to your environment or a .env file next to main.py."
+# Example usage of the loaded objects (optional quick check)
+if __name__ == "__main__":
+    # Print the names of document types loaded from data.json
+    document_types = [dt.name for dt in DOCUMENT_TYPES]
+    document_type_descriptions = {dt.name: dt.description for dt in DOCUMENT_TYPES}
+    classifier = TextClassifier(
+        api_key=subscription_key,
+        endpoint=endpoint,
+        model_name=model_name,
     )
-
-client = AzureOpenAI(
-    api_version="2024-12-01-preview",
-    azure_endpoint="https://joche-mhncioer-swedencentral.cognitiveservices.azure.com/",
-    api_key=subscription_key,
-)
-
-response = client.chat.completions.create(
-    messages=[
-        {
-            "role": "system",
-            "content": "You are a helpful assistant.",
-        },
-        {
-            "role": "user",
-            "content": "I am going to Paris, what should I see?",
-        }
-    ],
-    max_tokens=4096,
-    temperature=1.0,
-    top_p=1.0,
-    model=model_name
-)
-
-print(response.choices[0].message.content)
+    print(
+        classifier.classify(
+            "This is not an EPC doc",
+            document_types,
+            label_descriptions=document_type_descriptions,
+        )
+    )
+    
