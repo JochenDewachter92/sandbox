@@ -6,8 +6,8 @@ function Chat() {
   const { control } = useChatKit({
     api: {
       // Simple mode: ChatKit calls this when it needs a client_secret.
-      async getClientSecret(existing) {
-        // If you implement refresh logic, use `existing` to check expiry.
+      async getClientSecret(_existing) {
+        // If you implement refresh logic, use `_existing` to check expiry.
         const res = await fetch(`${API_BASE}/api/chatkit/session`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -37,12 +37,11 @@ function Chat() {
   return (
     <div
       style={{
-        height: "600px",
-        width: "400px",
-        maxWidth: "100%",
-        margin: "2rem auto",
-        border: "1px solid #ddd",
-        borderRadius: "12px",
+        height: "100vh",
+        width: "100vw",
+        position: "fixed",
+        top: 0,
+        left: 0,
         overflow: "hidden",
       }}
     >
@@ -52,12 +51,5 @@ function Chat() {
 }
 
 export default function App() {
-  return (
-    <div>
-      <h1 style={{ textAlign: "center", marginTop: "1.5rem" }}>
-        ChatKit
-      </h1>
-      <Chat />
-    </div>
-  );
+  return <Chat />;
 }
