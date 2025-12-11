@@ -38,8 +38,7 @@ def create_chatkit_session():
 
     payload = {
         'workflow': {
-            'id': CHATKIT_WORKFLOW_ID,  # <-- Agent Builder workflow
-            'version': 'draft'
+            'id': CHATKIT_WORKFLOW_ID  # <-- Agent Builder workflow
         },
         'user': 'demo-user-123'  # any stable per-user identifier
     }
